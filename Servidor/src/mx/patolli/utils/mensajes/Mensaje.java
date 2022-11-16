@@ -14,18 +14,43 @@ public class Mensaje implements Serializable {
         this.destinatario = destinatario;
     }
 
-    public String createMensaje(String separador,Color cRemitente, Color cMensaje,Color cDestinatario){
+    public String createMensaje(String separador){
         IColorString color = new ColorStringBuilder();
 
-        ColorString msg =color.messageColor(cRemitente,this.remitente)
-                .messageColor(cMensaje,separador + this.mensaje)
-                .messageColor(cDestinatario, separador +this.destinatario)
+        ColorString msg =color
+                .messageColor(Color.BLUE,this.remitente)
+                .messageColor(Color.GREEN,separador + this.mensaje)
+                .messageColor(Color.MAGENTA, separador +this.destinatario)
                 .messageColor(Color.NONE,"").
                 build();
 
         return msg.toString();
     }
 
+    public String createErrorMensaje(String separador){
+        IColorString color = new ColorStringBuilder();
+
+        ColorString msg =color
+                .messageColor(Color.BLUE,this.remitente)
+                .messageColor(Color.RED,separador + this.mensaje)
+                .messageColor(Color.MAGENTA, separador +this.destinatario)
+                .messageColor(Color.NONE,"").
+                build();
+
+        return msg.toString();
+    }
+    public String createAdvertenciaMensaje(String separador){
+        IColorString color = new ColorStringBuilder();
+
+        ColorString msg =color
+                .messageColor(Color.BLUE,this.remitente)
+                .messageColor(Color.YELLOW,separador + this.mensaje)
+                .messageColor(Color.MAGENTA, separador +this.destinatario)
+                .messageColor(Color.NONE,"").
+                build();
+
+        return msg.toString();
+    }
 
 
 }
