@@ -12,10 +12,10 @@ package mx.patolli.dominio;
  */
 public interface IEstado {
     
-    public void EnEsperaa();
-    public void EnTurno();
-    public void Ganador();
-    public void Perdedor();
+    public void enEspera();
+    public void enTurno();
+    public void ganador();
+    public void perdedor();
     public void setJugador(Jugador jugador);
     
 }
