@@ -16,6 +16,7 @@ public class GuiConfigurarPartida extends javax.swing.JFrame {
      */
     public GuiConfigurarPartida() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -27,26 +28,30 @@ public class GuiConfigurarPartida extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblConfigurarPartida = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         comboJugadores = new javax.swing.JComboBox<>();
         lblJugadores = new javax.swing.JLabel();
         comboAspas = new javax.swing.JComboBox<>();
         lblCasillas = new javax.swing.JLabel();
+        txtFondo = new javax.swing.JTextField();
+        txtMonto = new javax.swing.JTextField();
         comboFichas = new javax.swing.JComboBox<>();
         lblFichas = new javax.swing.JLabel();
         lblFichas1 = new javax.swing.JLabel();
         lblFichas2 = new javax.swing.JLabel();
-        txtFondo = new javax.swing.JTextField();
-        txtMonto = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         btnContinuar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Configurar Partida");
+        setBackground(new java.awt.Color(102, 102, 102));
 
-        lblConfigurarPartida.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        lblConfigurarPartida.setText("Configurar Partida");
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
-        comboJugadores.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        comboJugadores.setBackground(new java.awt.Color(102, 102, 102));
+        comboJugadores.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        comboJugadores.setForeground(new java.awt.Color(255, 255, 255));
         comboJugadores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4" }));
         comboJugadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,10 +59,13 @@ public class GuiConfigurarPartida extends javax.swing.JFrame {
             }
         });
 
-        lblJugadores.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblJugadores.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblJugadores.setForeground(new java.awt.Color(255, 255, 255));
         lblJugadores.setText("Jugadores");
 
-        comboAspas.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        comboAspas.setBackground(new java.awt.Color(102, 102, 102));
+        comboAspas.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        comboAspas.setForeground(new java.awt.Color(255, 255, 255));
         comboAspas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8", "9", "10", "11", "12", "13", "14", "15", "16" }));
         comboAspas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,10 +73,30 @@ public class GuiConfigurarPartida extends javax.swing.JFrame {
             }
         });
 
-        lblCasillas.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblCasillas.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblCasillas.setForeground(new java.awt.Color(255, 255, 255));
         lblCasillas.setText("Casillas por aspa");
 
-        comboFichas.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtFondo.setBackground(new java.awt.Color(102, 102, 102));
+        txtFondo.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txtFondo.setForeground(new java.awt.Color(255, 255, 255));
+        txtFondo.setText("0");
+        txtFondo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+
+        txtMonto.setBackground(new java.awt.Color(102, 102, 102));
+        txtMonto.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txtMonto.setForeground(new java.awt.Color(255, 255, 255));
+        txtMonto.setText("0");
+        txtMonto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        txtMonto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMontoActionPerformed(evt);
+            }
+        });
+
+        comboFichas.setBackground(new java.awt.Color(102, 102, 102));
+        comboFichas.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        comboFichas.setForeground(new java.awt.Color(255, 255, 255));
         comboFichas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "4", "5", "6" }));
         comboFichas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,94 +104,118 @@ public class GuiConfigurarPartida extends javax.swing.JFrame {
             }
         });
 
-        lblFichas.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblFichas.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblFichas.setForeground(new java.awt.Color(255, 255, 255));
         lblFichas.setText("Fichas por jugador");
 
-        lblFichas1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblFichas1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblFichas1.setForeground(new java.awt.Color(255, 255, 255));
         lblFichas1.setText("Fondo de apuesta");
 
-        lblFichas2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblFichas2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblFichas2.setForeground(new java.awt.Color(255, 255, 255));
         lblFichas2.setText("Monto por apuesta");
 
-        txtFondo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-
-        txtMonto.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtMonto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMontoActionPerformed(evt);
-            }
-        });
-
-        btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnCancelar.setBackground(new java.awt.Color(102, 102, 102));
+        btnCancelar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelar.setText("Cancelar");
+        btnCancelar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
             }
         });
 
-        btnContinuar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnContinuar.setBackground(new java.awt.Color(102, 102, 102));
+        btnContinuar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        btnContinuar.setForeground(new java.awt.Color(255, 255, 255));
         btnContinuar.setText("Continuar");
+        btnContinuar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContinuarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/patolli/imagenes/tituloPatolli.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblCasillas)
+                                    .addComponent(lblFichas)
+                                    .addComponent(lblJugadores)
+                                    .addComponent(lblFichas1)
+                                    .addComponent(lblFichas2)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(106, 106, 106)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(comboFichas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboAspas, 0, 135, Short.MAX_VALUE)
+                            .addComponent(comboJugadores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnContinuar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtMonto, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtFondo, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(78, 78, 78)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblJugadores)
+                    .addComponent(comboJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCasillas)
+                    .addComponent(comboAspas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboFichas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFichas))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFichas1)
+                    .addComponent(txtFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFichas2)
+                    .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblConfigurarPartida)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnCancelar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnContinuar))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblFichas, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblCasillas, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblFichas1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblFichas2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblJugadores, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addGap(41, 41, 41)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(comboJugadores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(comboAspas, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtMonto, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(comboFichas, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtFondo, javax.swing.GroupLayout.Alignment.TRAILING)))))
-                .addContainerGap(59, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblConfigurarPartida)
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblJugadores))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboAspas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCasillas))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboFichas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblFichas))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblFichas1)
-                    .addComponent(txtFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblFichas2)
-                    .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnContinuar)
-                    .addComponent(btnCancelar))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -186,8 +238,16 @@ public class GuiConfigurarPartida extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMontoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        GuiPrincipal principal = new GuiPrincipal();
+        principal.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
+        GuiConfigurarJugador configurarJugador = new GuiConfigurarJugador();
+        configurarJugador.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnContinuarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,8 +290,9 @@ public class GuiConfigurarPartida extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboAspas;
     private javax.swing.JComboBox<String> comboFichas;
     private javax.swing.JComboBox<String> comboJugadores;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCasillas;
-    private javax.swing.JLabel lblConfigurarPartida;
     private javax.swing.JLabel lblFichas;
     private javax.swing.JLabel lblFichas1;
     private javax.swing.JLabel lblFichas2;
