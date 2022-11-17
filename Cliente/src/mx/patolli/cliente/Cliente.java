@@ -10,8 +10,8 @@ public class Cliente {
       private static final String HOST="";
     private static final int PORT=5000;
 
-      private Cliente(String nombre){
-            this.nombre=nombre;
+      private Cliente(){
+
             this.iniciarSocket();
       }
 
@@ -24,9 +24,9 @@ public class Cliente {
 
       }
 
-      public static Cliente getInstance(String name){
+      public static Cliente getInstance(){
           if(socketCliente==null){
-              socketCliente= new Cliente(name);
+              socketCliente= new Cliente();
           }
           return socketCliente;
       }

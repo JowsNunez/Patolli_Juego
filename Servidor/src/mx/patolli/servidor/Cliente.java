@@ -8,7 +8,7 @@ import java.net.Socket;
 public class Cliente  implements Serializable {
 
 
-    private Long idCliente;
+    private String idCliente;
     private String nombre;
     private Socket cliente;
 
@@ -23,11 +23,11 @@ public class Cliente  implements Serializable {
         this.nombre = nombre;
     }
 
-    public Long getIdCliente() {
+    public String getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(Long idCliente) {
+    public void setIdCliente(String idCliente) {
         this.idCliente = idCliente;
     }
 

@@ -5,16 +5,19 @@
  */
 package mx.patolli.vistas;
 
+import mx.patolli.control.ControlCliente;
+
 /**
  *
  * @author Kevin Rios
  */
 public class GuiPrincipal extends javax.swing.JFrame {
-
+    private ControlCliente control;
     /**
      * Creates new form GuiPrincipal
      */
-    public GuiPrincipal() {
+    public GuiPrincipal(ControlCliente control) {
+        this.control = control;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -124,52 +127,18 @@ public class GuiPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnUnirsePartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnirsePartidaActionPerformed
-        GuiBuscarPartida buscarPartida = new GuiBuscarPartida();
+        this.control.enviarNombre("UNIRSE");
+        GuiBuscarPartida buscarPartida = new GuiBuscarPartida(control);
         buscarPartida.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnUnirsePartidaActionPerformed
 
     private void btnCrearPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPartidaActionPerformed
-        GuiConfigurarPartida configurarPartida = new GuiConfigurarPartida();
+        this.control.enviarNombre("CREAR");
+        GuiConfigurarPartida configurarPartida = new GuiConfigurarPartida(control);
         configurarPartida.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnCrearPartidaActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuiPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuiPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuiPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GuiPrincipal().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearPartida;
     private javax.swing.JButton btnSalir;

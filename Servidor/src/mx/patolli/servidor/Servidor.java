@@ -1,5 +1,7 @@
 package mx.patolli.servidor;
 
+import mx.patolli.utils.mensajes.Mensaje;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -39,12 +41,14 @@ public class Servidor implements Runnable {
             Socket nSocket = this.servidorSocket.accept();
             this.in = new DataInputStream(nSocket.getInputStream());
             this.out = new DataOutputStream(nSocket.getOutputStream());
-
+            System.out.println(new Mensaje("Servidor","Cliente Conectado","").createAdvertenciaMensaje(" > "));
             out.flush();
             String str = this.in.readUTF();
             cliente = new Cliente();
             cliente.setNombre(str);
             cliente.setCliente(nSocket);
+            cliente.setIdCliente(crearIdCliente());
+            System.out.println(new Mensaje("Servidor","Nuevo Cliente: " + cliente,"").createAdvertenciaMensaje(" > "));
             Thread thread =  new Thread(new ClienteHilo(cliente));
             thread.start();
 
@@ -61,6 +65,19 @@ public class Servidor implements Runnable {
         }catch(IOException e){
             System.out.println(e.getMessage());
         }
+
+    }
+    private String crearIdCliente(){
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+        StringBuilder id= new StringBuilder();
+
+        for (int i = 0; i < 11 ; i++) {
+            int indice = (int) Math.floor(Math.random()*chars.length());
+            String caracter = String.valueOf(chars.charAt(indice));
+            id.append(caracter);
+        }
+
+        return id.toString();
 
     }
 

@@ -4,13 +4,17 @@
  */
 package mx.patolli.main;
 
+import mx.patolli.vistas.GuiIniciar;
+import mx.patolli.vistas.GuiPrincipal;
+
 /**
  *
  * @author el_fr
  */
 public class Main {
    public static void main(String[] args){
-      System.out.println("Hello world");
+      GuiIniciar principal = new GuiIniciar();
+      principal.setVisible(true);
    }
     
 }

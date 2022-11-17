@@ -5,17 +5,21 @@
  */
 package mx.patolli.vistas;
 
+import mx.patolli.cliente.Cliente;
+import mx.patolli.control.ControlCliente;
+
 /**
  *
  * @author Kevin Rios
  */
 public class GuiIniciar extends javax.swing.JFrame {
-
+    private ControlCliente control;
     /**
      * Creates new form GuiIniciar
      */
     public GuiIniciar() {
         initComponents();
+        control = new ControlCliente();
         setLocationRelativeTo(null);
     }
 
@@ -112,7 +116,13 @@ public class GuiIniciar extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        GuiPrincipal principal = new GuiPrincipal();
+
+
+        Cliente cliente =control.getSocket();
+        cliente.setNombre(txtUsuario.getText());
+        control.iniciarHilos();
+        control.enviarNombre(txtUsuario.getText());
+        GuiPrincipal principal = new GuiPrincipal(control);
         principal.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
