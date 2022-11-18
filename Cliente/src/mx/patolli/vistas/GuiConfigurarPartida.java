@@ -248,6 +248,7 @@ public class GuiConfigurarPartida extends javax.swing.JFrame {
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         GuiConfigurarJugador configurarJugador = new GuiConfigurarJugador(control);
+        this.control.enviarNombre((String) comboJugadores.getSelectedItem());
         configurarJugador.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnContinuarActionPerformed

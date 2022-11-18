@@ -127,7 +127,7 @@ public class GuiPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnUnirsePartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnirsePartidaActionPerformed
-        this.control.enviarNombre("UNIRSE");
+
         GuiBuscarPartida buscarPartida = new GuiBuscarPartida(control);
         buscarPartida.setVisible(true);
         this.setVisible(false);

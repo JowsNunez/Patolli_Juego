@@ -164,6 +164,8 @@ public class GuiBuscarPartida extends javax.swing.JFrame {
 
     private void btnUnirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnirseActionPerformed
         GuiConfigurarJugador configurar = new GuiConfigurarJugador(control);
+        this.control.enviarNombre("UNIRSE");
+        this.control.enviarNombre(txtPartida.getText());
         configurar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnUnirseActionPerformed
