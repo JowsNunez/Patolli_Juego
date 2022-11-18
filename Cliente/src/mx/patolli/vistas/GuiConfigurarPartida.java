@@ -69,7 +69,7 @@ public class GuiConfigurarPartida extends javax.swing.JFrame {
         comboAspas.setBackground(new java.awt.Color(102, 102, 102));
         comboAspas.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         comboAspas.setForeground(new java.awt.Color(255, 255, 255));
-        comboAspas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8", "9", "10", "11", "12", "13", "14", "15", "16" }));
+        comboAspas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8", "9", "10", "11", "12", "13", "14" }));
         comboAspas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboAspasActionPerformed(evt);
@@ -84,13 +84,11 @@ public class GuiConfigurarPartida extends javax.swing.JFrame {
         txtFondo.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         txtFondo.setForeground(new java.awt.Color(255, 255, 255));
         txtFondo.setText("0");
-        txtFondo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
 
         txtMonto.setBackground(new java.awt.Color(102, 102, 102));
         txtMonto.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         txtMonto.setForeground(new java.awt.Color(255, 255, 255));
         txtMonto.setText("0");
-        txtMonto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
         txtMonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMontoActionPerformed(evt);
@@ -100,7 +98,7 @@ public class GuiConfigurarPartida extends javax.swing.JFrame {
         comboFichas.setBackground(new java.awt.Color(102, 102, 102));
         comboFichas.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         comboFichas.setForeground(new java.awt.Color(255, 255, 255));
-        comboFichas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "4", "5", "6" }));
+        comboFichas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4", "5", "6" }));
         comboFichas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboFichasActionPerformed(evt);
@@ -123,7 +121,6 @@ public class GuiConfigurarPartida extends javax.swing.JFrame {
         btnCancelar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelar.setText("Cancelar");
-        btnCancelar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -134,7 +131,6 @@ public class GuiConfigurarPartida extends javax.swing.JFrame {
         btnContinuar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         btnContinuar.setForeground(new java.awt.Color(255, 255, 255));
         btnContinuar.setText("Continuar");
-        btnContinuar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
         btnContinuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnContinuarActionPerformed(evt);

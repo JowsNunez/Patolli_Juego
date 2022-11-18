@@ -1,7 +1,5 @@
 package mx.patolli.servidor;
 
-
-
 import mx.patolli.utils.Opciones;
 import mx.patolli.utils.mensajes.Mensaje;
 
@@ -11,18 +9,17 @@ import java.io.IOException;
 import java.net.ServerSocket;
 
 public class ClienteHilo implements Runnable {
+
     private Cliente cliente;
     private DataInputStream in;
     private DataOutputStream out;
     private boolean aEntrado;
     private Sala sala;
 
-
     public ClienteHilo(Cliente cliente) {
         this.cliente = cliente;
         this.aEntrado = true;
     }
-
 
     @Override
     public void run() {
@@ -44,7 +41,6 @@ public class ClienteHilo implements Runnable {
                 out.flush();
                 Opciones opcion = Opciones.valueOf(this.in.readUTF());
 
-
                 switch (opcion) {
                     case CREAR:
                         Sala sala = new Sala();
@@ -60,10 +56,14 @@ public class ClienteHilo implements Runnable {
                     case UNIRSE:
                         System.out.println(new Mensaje(cliente.getIdCliente() + " " + cliente.getNombre(), " Selecciono UNIRSE PARTIDA", "Servidor").createMensaje(" > "));
                         str = this.in.readUTF();
-                        this.sala =Servidor.getInstance().buscarSala(str);
-                        this.sala.getClientes().add(this.cliente);
-                        this.sala.getClientes().forEach(System.out::println);
-                        Servidor.getInstance().mostarTodo();
+                        this.sala = Servidor.getInstance().buscarSala(str);
+                        if (this.sala.getClientes().size() < this.sala.getNumClientes() - 1) {
+                            this.sala.getClientes().add(this.cliente);
+                            this.sala.getClientes().forEach(System.out::println);
+                            Servidor.getInstance().mostarTodo();
+                        }else{
+                            System.out.println("Error");
+                        }
 
                         break;
                     case CONFIGURARJUEGO:
@@ -82,7 +82,6 @@ public class ClienteHilo implements Runnable {
 
                 out.flush();
             }
-
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
