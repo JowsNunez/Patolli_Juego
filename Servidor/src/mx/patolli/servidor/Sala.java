@@ -2,30 +2,31 @@ package mx.patolli.servidor;
 
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Sala implements Serializable {
 
-    private Long idSala;
+    private String idSala;
     private Set<Cliente> clientes;
     private int numClientes;
     private Cliente administrador;
 
 
     public Sala(){
-
+        this.clientes= new HashSet<>();
     }
 
     public Sala(int numClientes){
         this.numClientes=numClientes;
     }
 
-    public Long getIdSala() {
+    public String getIdSala() {
         return idSala;
     }
 
-    public void setIdSala(Long idSala) {
+    public void setIdSala(String idSala) {
         this.idSala = idSala;
     }
 

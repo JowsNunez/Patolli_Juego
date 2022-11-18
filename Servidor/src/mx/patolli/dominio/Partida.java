@@ -6,11 +6,13 @@ package mx.patolli.dominio;
  * and open the template in the editor.
  */
 
+import java.io.Serializable;
+
 /**
  *
  * @author Kevin Rios
  */
-public class Partida {
+public class Partida implements Serializable {
     private int numJugadores;
     private Jugador jugadorEnTurno;
     private int id;

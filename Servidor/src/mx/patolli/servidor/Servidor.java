@@ -7,7 +7,10 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Servidor implements Runnable {
 
@@ -16,11 +19,12 @@ public class Servidor implements Runnable {
     private DataInputStream in;
     private DataOutputStream out;
     private Cliente cliente;
-
+    private Set<Sala> listaSalas;
 
 
     private Servidor() throws IOException {
         this.iniciarServidor();
+        this.listaSalas= new HashSet<>();
 
     }
 
@@ -79,6 +83,46 @@ public class Servidor implements Runnable {
 
         return id.toString();
 
+    }
+
+    public void agregarSala(Sala sala){
+        if(listaSalas!=null){
+            if(!listaSalas.contains(sala)){
+                String idSala = this.crearIdCliente();
+                sala.setIdSala(idSala);
+                this.listaSalas.add(sala);
+
+            }
+        }
+
+
+    }
+
+    public boolean eliminarSala(Sala sala){
+        if(!listaSalas.contains(sala)){
+            this.listaSalas.remove(sala);
+            return true;
+        }
+        return false;
+    }
+
+    public Sala buscarSala(String idSala){
+        if(listaSalas!=null){
+            return this.listaSalas.stream()
+                    .filter(e -> idSala.equals(e.getIdSala()))
+                    .toList()
+                    .get(0);
+        }
+       return null;
+    }
+
+    public void mostrarSala(Sala sala){
+        System.out.println("idSala"+ sala.getIdSala());
+        System.out.println(sala);
+    }
+
+    public void mostarTodo(){
+        this.listaSalas.forEach(System.out::println);
     }
 
 }
