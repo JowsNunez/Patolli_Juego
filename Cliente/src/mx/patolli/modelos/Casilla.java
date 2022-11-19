@@ -5,14 +5,13 @@
  */
 package mx.patolli.modelos;
 
+import java.util.List;
+
 /**
  *
  * @author Kevin Rios
  */
-public class Casilla {
-    private Ficha [] fichas;
-    
-    private Casilla(Ficha [] fichas){
-        
-    }
+public interface Casilla {
+
+    List<Ficha> getFichas();
 }

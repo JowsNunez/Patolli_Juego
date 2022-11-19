@@ -5,10 +5,41 @@
  */
 package mx.patolli.modelos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Kevin Rios
  */
 public class Tablero {
-    private Casilla [] casillas;
+
+    private List<Casilla> casillas;
+    private String urlImagen;
+
+    public Tablero() {
+        
+    }
+
+    public Tablero(String urlImagen, List<Casilla> casillas) {
+        this.urlImagen = urlImagen;
+        this.casillas = casillas;
+    }
+
+    public String getUrlImagen() {
+        return urlImagen;
+    }
+
+    public void setUrlImagen(String urlImagen) {
+        this.urlImagen = urlImagen;
+    }
+
+    public List<Casilla> getCasillas() {
+        return casillas;
+    }
+
+    public void setCasillas(List<Casilla> casillas) {
+        this.casillas = casillas;
+    }
+
 }
