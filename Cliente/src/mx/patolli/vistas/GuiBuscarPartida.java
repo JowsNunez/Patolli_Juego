@@ -11,7 +11,7 @@ import mx.patolli.control.ControlCliente;
  *
  * @author Kevin Rios
  */
-public class GuiBuscarPartida extends javax.swing.JFrame {
+public class GuiBuscarPartida extends Gui {
     private ControlCliente control;
     /**
      * Creates new form GuiBuscarPartida

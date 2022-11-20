@@ -11,7 +11,7 @@ import mx.patolli.control.ControlCliente;
  *
  * @author Kevin Rios
  */
-public class GuiPrincipal extends javax.swing.JFrame {
+public class GuiPrincipal extends Gui {
     private ControlCliente control;
     /**
      * Creates new form GuiPrincipal

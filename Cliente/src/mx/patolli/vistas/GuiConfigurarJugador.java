@@ -11,7 +11,7 @@ import mx.patolli.control.ControlCliente;
  *
  * @author Kevin Rios
  */
-public class GuiConfigurarJugador extends javax.swing.JFrame {
+public class GuiConfigurarJugador extends Gui {
     private ControlCliente control;
     /**
      * Creates new form GuiConfigurarJugador

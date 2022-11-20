@@ -11,7 +11,7 @@ import mx.patolli.control.ControlCliente;
  *
  * @author Kevin Rios
  */
-public class GuiSala extends javax.swing.JFrame {
+public class GuiSala extends Gui {
     private ControlCliente control;
 
     /**

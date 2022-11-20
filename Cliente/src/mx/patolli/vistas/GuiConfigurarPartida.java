@@ -11,7 +11,7 @@ import mx.patolli.control.ControlCliente;
  *
  * @author Kevin Rios
  */
-public class GuiConfigurarPartida extends javax.swing.JFrame {
+public class GuiConfigurarPartida extends Gui {
     private ControlCliente control;
     /**
      * Creates new form GuiConfigurarPartida
