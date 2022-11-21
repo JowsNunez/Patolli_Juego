@@ -32,9 +32,6 @@ public class ClienteHilo implements Runnable {
                 String str = null;
 
                 if (this.aEntrado) {
-                    System.out.println("A entrado");
-                    out.writeUTF("a entrado");
-                    out.flush();
                     this.aEntrado = false;
                 }
 

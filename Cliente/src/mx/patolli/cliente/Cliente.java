@@ -7,8 +7,8 @@ public class Cliente {
       private String nombre;
       private Socket socket;
       private static Cliente socketCliente;
-      private static final String HOST="137.184.3.248";
-    private static final int PORT=5000;
+      private static final String HOST="localhost";
+      private static final int PORT=5000;
 
       private Cliente(){
 

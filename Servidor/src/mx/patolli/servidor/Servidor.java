@@ -38,6 +38,7 @@ public class Servidor implements Runnable {
 
     @Override
     public void run() {
+        System.out.println("Servidor iniciado en puerto: " +this.servidorSocket.getLocalPort());
         try{
 
 
@@ -117,7 +118,7 @@ public class Servidor implements Runnable {
     }
 
     public void mostrarSala(Sala sala){
-        System.out.println("idSala"+ sala.getIdSala());
+        System.out.println("idSala: "+ sala.getIdSala());
         System.out.println(sala);
     }
 

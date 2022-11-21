@@ -56,6 +56,6 @@ public class Sala implements Serializable {
 
     @Override
     public String toString() {
-        return  " idSala: " + idSala + " clientes: " + clientes +" numClientes: " + numClientes + "administrador: " + administrador;
+        return  "idSala: " + idSala + " clientes: " + clientes +" numClientes: " + numClientes + " administrador: " + administrador;
     }
 }
