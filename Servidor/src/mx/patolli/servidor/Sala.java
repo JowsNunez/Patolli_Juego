@@ -5,12 +5,14 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import mx.patolli.dominio.Partida;
 
 public class Sala implements Serializable {
 
     private String idSala;
     private Set<Cliente> clientes;
     private int numClientes;
+    private Partida partida;
     private Cliente administrador;
 
 
@@ -53,6 +55,15 @@ public class Sala implements Serializable {
     public void setAdministrador(Cliente administrador) {
         this.administrador = administrador;
     }
+
+    public Partida getPartida() {
+        return partida;
+    }
+
+    public void setPartida(Partida partida) {
+        this.partida = partida;
+    }
+    
 
     @Override
     public String toString() {

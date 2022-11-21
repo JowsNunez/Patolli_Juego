@@ -2,11 +2,14 @@ package mx.patolli.cliente;
 
 import java.io.*;
 import java.util.Scanner;
+import mx.patolli.utils.ProtocoloMensaje;
+
 
 public class ClienteHiloOut implements Runnable{
 
     private Cliente cliente;
-    private DataOutputStream out;
+    private ObjectOutputStream outObj;
+
 
     public ClienteHiloOut(Cliente cliente){
         this.cliente=cliente;
@@ -19,9 +22,10 @@ public class ClienteHiloOut implements Runnable{
         try {
             Scanner scanner = new Scanner(System.in);
             while (true) {
-                String str = scanner.nextLine();
-                this.out.writeUTF(str);
-
+              
+                
+                this.outObj.writeObject(new ProtocoloMensaje("", ""));
+                this.outObj.flush();
             }
         }catch (IOException e){
             System.out.println(e.getMessage());
@@ -29,15 +33,18 @@ public class ClienteHiloOut implements Runnable{
 
     }
 
-    public void enviar(String str) throws IOException {
-        this.out.writeUTF(str);
+  
+     public void enviarObj(ProtocoloMensaje o) throws IOException {
+         
+        this.outObj.writeObject(o);
+        
 
     }
 
     private void iniciarDataOut(){
         try {
-            this.out = new DataOutputStream(this.cliente.getSocket().getOutputStream());
-        }catch (Exception e){
+            this.outObj = new ObjectOutputStream(this.cliente.getSocket().getOutputStream());
+        }catch (IOException e){
             System.out.println(e.getMessage());
         }
     }

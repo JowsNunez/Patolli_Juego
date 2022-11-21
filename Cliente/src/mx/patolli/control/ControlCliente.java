@@ -5,6 +5,7 @@ import mx.patolli.cliente.ClienteHiloIn;
 import mx.patolli.cliente.ClienteHiloOut;
 
 import java.io.IOException;
+import mx.patolli.utils.ProtocoloMensaje;
 
 public class ControlCliente implements IControl<Object>{
 
@@ -31,9 +32,10 @@ public class ControlCliente implements IControl<Object>{
 
     }
 
-    public void enviarNombre(String str){
+    
+    public void enviar(ProtocoloMensaje o){
         try {
-            this.clienteOut.enviar(str);
+            this.clienteOut.enviarObj(o);
         }catch (IOException e){
             System.out.println(e.getMessage());
         }

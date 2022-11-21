@@ -1,10 +1,11 @@
-package mx.patolli.dominio;
+package dominioDTO;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import mx.patolli.dominio.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,19 +13,20 @@ import java.util.List;
  *
  * @author Kevin Rios
  */
-public class Partida implements Serializable {
+public class PartidaDTO implements Serializable {
 
+    private static final long serialVersionUID = -912157098380179388L;
     private int numJugadores;
     private int numAspas;
-    private List<Jugador> jugadores;
-    private Tablero tablero;
+    private List<JugadorDTO> jugadores;
+    private TableroDTO tablero;
     private int numFichas;
     private int apuesta;
 
-    public Partida() {
+    public PartidaDTO() {
     }
 
-    public Partida(int numJugadores, int numAspas, Tablero tablero, int numFichas, int apuesta) {
+    public PartidaDTO(int numJugadores, int numAspas, TableroDTO tablero, int numFichas, int apuesta) {
         this.numJugadores = numJugadores;
         this.numAspas = numAspas;
         this.tablero = tablero;
@@ -32,11 +34,11 @@ public class Partida implements Serializable {
         this.apuesta = apuesta;
     }
 
-    public Tablero getTablero() {
+    public TableroDTO getTablero() {
         return tablero;
     }
 
-    public void setTablero(Tablero tablero) {
+    public void setTablero(TableroDTO tablero) {
         this.tablero = tablero;
     }
 
@@ -56,11 +58,11 @@ public class Partida implements Serializable {
         this.numAspas = numAspas;
     }
 
-    public List<Jugador> getJugadores() {
+    public List<JugadorDTO> getJugadores() {
         return jugadores;
     }
 
-    public void setJugadores(List<Jugador> jugadores) {
+    public void setJugadores(List<JugadorDTO> jugadores) {
         this.jugadores = jugadores;
     }
 

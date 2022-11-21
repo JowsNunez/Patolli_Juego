@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author el_fr
  */
-public class CasillaCentral implements Casilla {
+public class CasillaCentral implements CasillaEspecial {
 
     private List<Ficha> fichas;
     private int posicionX;

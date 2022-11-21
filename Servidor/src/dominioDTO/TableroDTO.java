@@ -1,19 +1,21 @@
+package dominioDTO;
+
+import java.io.Serializable;
+import mx.patolli.dominio.*;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.patolli.modelos;
-
-import java.util.List;
 
 /**
  *
  * @author Kevin Rios
  */
-public interface Casilla {
-
-    List<Ficha> getFichas();
-    public int getPosicionX();
-    public int getPosicionY();
+public class TableroDTO  implements Serializable{
+    private static final long serialVersionUID = -912157098380179388L;
+    
+    
+   
 }

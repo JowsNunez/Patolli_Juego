@@ -5,6 +5,8 @@
  */
 package mx.patolli.vistas;
 
+import mx.patolli.utils.ProtocoloMensaje;
+
 import mx.patolli.control.ControlCliente;
 
 /**
@@ -164,8 +166,8 @@ public class GuiBuscarPartida extends Gui {
 
     private void btnUnirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnirseActionPerformed
         GuiConfigurarJugador configurar = new GuiConfigurarJugador(control);
-        this.control.enviarNombre("UNIRSE");
-        this.control.enviarNombre(txtPartida.getText());
+        this.control.enviar(new ProtocoloMensaje("UNIRSE",""));
+        this.control.enviar(new ProtocoloMensaje("",txtPartida.getText()));
         configurar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnUnirseActionPerformed

@@ -6,13 +6,17 @@ import mx.patolli.utils.mensajes.Mensaje;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
+import mx.patolli.dominio.Partida;
+import mx.patolli.utils.ProtocoloMensaje;
 
 public class ClienteHilo implements Runnable {
 
     private Cliente cliente;
-    private DataInputStream in;
-    private DataOutputStream out;
+    private ObjectInputStream in;
+    private ObjectOutputStream out;
     private boolean aEntrado;
     private Sala sala;
 
@@ -24,32 +28,38 @@ public class ClienteHilo implements Runnable {
     @Override
     public void run() {
         try {
-
-            this.in = new DataInputStream(this.cliente.getCliente().getInputStream());
-            this.out = new DataOutputStream(this.cliente.getCliente().getOutputStream());
+            ProtocoloMensaje msg;
+            this.in = new ObjectInputStream(this.cliente.getCliente().getInputStream());
+            this.out = new ObjectOutputStream(this.cliente.getCliente().getOutputStream());
+            this.cliente.setIn(in);
+            this.cliente.setOut(out);
             while (true) {
 
                 String str = null;
 
                 if (this.aEntrado) {
                     System.out.println("A entrado");
-                    out.writeUTF("a entrado");
-                    out.flush();
+             //       out.writeObject(new ProtocoloMensaje("a entrado", "A entrado"));
+               //     out.flush();
                     this.aEntrado = false;
                 }
 
                 out.flush();
-                Opciones opcion = Opciones.valueOf(this.in.readUTF());
+                msg = (ProtocoloMensaje) Servidor.getInstance().recibirObj(this.cliente);
+                Opciones opcion = Opciones.valueOf(msg.getComando());
 
                 switch (opcion) {
                     case CREAR:
+                        System.out.println(new Mensaje(cliente.getIdCliente() + " " + cliente.getNombre(), " Selecciono CREAR PARTIDA", "Servidor").createMensaje(" > "));
                         Sala sala = new Sala();
                         sala.setAdministrador(this.cliente);
-                        str = this.in.readUTF();
-                        sala.setNumClientes(Integer.parseInt(str));
 
+                        msg = (ProtocoloMensaje) Servidor.getInstance().recibirObj(this.cliente);
+                        Partida partida = (Partida) msg.getObj();
+                        sala.setPartida(partida);
+                        sala.setNumClientes(partida.getNumJugadores());
+//                        
                         Servidor.getInstance().agregarSala(sala);
-                        System.out.println(new Mensaje(cliente.getIdCliente() + " " + cliente.getNombre(), " Selecciono CREAR PARTIDA", "Servidor").createMensaje(" > "));
                         Servidor.getInstance().mostrarSala(sala);
                         Servidor.getInstance().mostarTodo();
                         break;
@@ -61,7 +71,9 @@ public class ClienteHilo implements Runnable {
                             this.sala.getClientes().add(this.cliente);
                             this.sala.getClientes().forEach(System.out::println);
                             Servidor.getInstance().mostarTodo();
-                        }else{
+                            Servidor.getInstance().enviarMsgSala(str, "Se unió: " + this.cliente.getNombre());
+
+                        } else {
                             System.out.println("Error");
                         }
 

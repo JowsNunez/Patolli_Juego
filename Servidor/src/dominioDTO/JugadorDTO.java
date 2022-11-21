@@ -1,4 +1,7 @@
-package mx.patolli.dominio;
+package dominioDTO;
+
+import java.io.Serializable;
+import mx.patolli.dominio.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,19 +13,20 @@ package mx.patolli.dominio;
  *
  * @author Kevin Rios
  */
-public class Jugador {
+public class JugadorDTO  implements Serializable{
+    private static final long serialVersionUID = -912157098380179388L;
     private String nombre;
     private int fichas;
     private int puntos;
     private int fondo;
     private String color;
-    private Jugador instance;
+    private JugadorDTO instance;
     private boolean listo;
 
-    public Jugador() {
+    public JugadorDTO() {
     }
 
-    public Jugador(String nombre, int fichas, int puntos, int fondo, String color) {
+    public JugadorDTO(String nombre, int fichas, int puntos, int fondo, String color) {
         this.nombre = nombre;
         this.fichas = fichas;
         this.puntos = puntos;
@@ -70,11 +74,11 @@ public class Jugador {
         this.color = color;
     }
 
-    public Jugador getInstance() {
+    public JugadorDTO getInstance() {
         return instance;
     }
 
-    public void setInstance(Jugador instance) {
+    public void setInstance(JugadorDTO instance) {
         this.instance = instance;
     }
 

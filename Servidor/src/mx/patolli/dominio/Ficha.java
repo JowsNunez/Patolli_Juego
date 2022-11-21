@@ -12,7 +12,7 @@ package mx.patolli.dominio;
  */
 public class Ficha {
     private String color;
-    
+    private Jugador jugador;
     public Ficha ficha(Ficha ficha){
         return ficha;
     }

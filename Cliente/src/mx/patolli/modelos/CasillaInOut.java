@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author el_fr
  */
-public class CasillaInOut implements Casilla {
+public class CasillaInOut implements CasillaEspecial {
 
     private List<Ficha> fichas;
     private int posicionX;
