@@ -64,9 +64,10 @@ public class Sala implements Serializable {
         this.partida = partida;
     }
     
+    
 
     @Override
     public String toString() {
-        return  " idSala: " + idSala + " clientes: " + clientes +" numClientes: " + numClientes + "administrador: " + administrador;
+        return "Sala{" + "idSala=" + idSala + ", clientes=" + clientes + ", numClientes=" + numClientes + ", partida=" + partida + ", administrador=" + administrador + '}';
     }
 }

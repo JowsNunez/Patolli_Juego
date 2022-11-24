@@ -5,13 +5,14 @@ import mx.patolli.cliente.ClienteHiloIn;
 import mx.patolli.cliente.ClienteHiloOut;
 
 import java.io.IOException;
+import mx.patolli.dominio.Partida;
 import mx.patolli.utils.ProtocoloMensaje;
 
 public class ControlCliente implements IControl<Object>{
 
     private ClienteHiloIn clienteIn;
     private ClienteHiloOut clienteOut;
-
+     
     @Override
     public Cliente getSocket() {
             return Cliente.getInstance();
@@ -39,6 +40,14 @@ public class ControlCliente implements IControl<Object>{
         }catch (IOException e){
             System.out.println(e.getMessage());
         }
+    }
+    
+    public Partida getPartida(){
+        return this.clienteIn.getPartida();
+    }
+    
+    public boolean isRespones(){
+        return this.clienteIn.isResponse();
     }
 
 

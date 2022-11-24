@@ -49,29 +49,33 @@ public class Servidor implements Runnable {
                 Socket nSocket = this.servidorSocket.accept();
                 this.in = new ObjectInputStream(nSocket.getInputStream());
                this.out = new ObjectOutputStream(nSocket.getOutputStream());
-               Thread.sleep(5000); 
+               out.flush();
+            System.out.println("Todo bien");
+
             System.out.println(new Mensaje("Servidor","Cliente Conectado","").createAdvertenciaMensaje(" > "));
-                out.flush();
-                ProtocoloMensaje str = (ProtocoloMensaje)  this.in.readObject();
                 
+                Object str =   this.in.readObject();
+             ProtocoloMensaje msg = (ProtocoloMensaje) str;  
                 System.out.println(str);
                 cliente = new Cliente();
-                cliente.setNombre(str.getObj().toString());
+          cliente.setNombre(msg.getObj().toString());
                 cliente.setCliente(nSocket);
-                cliente.setIdCliente(crearIdCliente());  Thread.sleep(5000);       
+                 this.cliente.setIn(in);
+            this.cliente.setOut(out);
+                cliente.setIdCliente(crearIdCliente()); 
+                      
             System.out.println(new Mensaje("Servidor","Nuevo Cliente: " + cliente,"").createAdvertenciaMensaje(" > "));
             
             Thread thread =  new Thread(new ClienteHilo(cliente));
                 thread.start();
+                
 
             }
         }catch (IOException e){
             System.out.println(e.getMessage());
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
 
     }
 
@@ -119,11 +123,11 @@ public class Servidor implements Runnable {
     }
 
     public Sala buscarSala(String idSala) {
+        System.out.println("SALA:" +idSala);
         if (listaSalas != null) {
             return this.listaSalas.stream()
                     .filter(e -> idSala.equals(e.getIdSala()))
-                    .toList()
-                    .get(0);
+                    .findFirst().get();
         }
         return null;
     }
@@ -139,11 +143,11 @@ public class Servidor implements Runnable {
 
     public void enviarMsgSala(String idsala, String msg) throws IOException {
         Sala sala = this.buscarSala(idsala);
-        sala.getAdministrador().getOut().writeUTF(msg);
+        sala.getAdministrador().getOut().writeObject(new ProtocoloMensaje("MENSAJE", msg));
         sala.getClientes().forEach(s -> {
             try {
                 if (s != null) {
-                    s.getOut().writeUTF(msg);
+                    s.getOut().writeObject(new ProtocoloMensaje("MENSAJE", msg));
                 }
             } catch (IOException e) {
                 System.out.println(e.getMessage());
@@ -152,8 +156,8 @@ public class Servidor implements Runnable {
     }
 
     public Object recibirObj(Cliente cliente)   {
-        System.out.println(cliente);
-        try (ObjectInputStream o = new ObjectInputStream(cliente.getIn())) {
+        
+        try (ObjectInputStream o = cliente.getIn()) {
             return o.readObject();
             
 

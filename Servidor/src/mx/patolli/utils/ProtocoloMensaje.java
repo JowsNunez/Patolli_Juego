@@ -4,6 +4,7 @@
  */
 package mx.patolli.utils;
 
+import java.io.Serial;
 import java.io.Serializable;
 import mx.patolli.dominio.Jugador;
 import mx.patolli.dominio.Partida;
@@ -13,7 +14,8 @@ import mx.patolli.dominio.Partida;
  * @author el_fr
  */
 public class ProtocoloMensaje implements Serializable{
-   private static final long serialVersionUID = -912157098380179388L;
+   @Serial
+private static final long serialVersionUID = -912157098380179388L;
     private String comando;
     private Object obj;
 

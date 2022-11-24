@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package mx.patolli.utils;
-
+import java.io.Serial;
 import java.io.Serializable;
 
 
@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author el_fr
  */
 public class ProtocoloMensaje implements Serializable{
+    @Serial
     private static final long serialVersionUID = -912157098380179388L;
     private String comando;
     private Object obj;
@@ -37,5 +38,11 @@ public class ProtocoloMensaje implements Serializable{
     public void setObj(Object obj) {
         this.obj = obj;
     }
+
+    @Override
+    public String toString() {
+        return "ProtocoloMensaje{" + "comando=" + comando + ", obj=" + obj + '}';
+    }
+    
     
 }
