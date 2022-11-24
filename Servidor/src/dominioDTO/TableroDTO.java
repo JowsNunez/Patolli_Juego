@@ -1,4 +1,7 @@
-package mx.patolli.dominio;
+package dominioDTO;
+
+import java.io.Serializable;
+import mx.patolli.dominio.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,10 +13,9 @@ package mx.patolli.dominio;
  *
  * @author Kevin Rios
  */
-public class Ficha {
-    private String color;
-    private Jugador jugador;
-    public Ficha ficha(Ficha ficha){
-        return ficha;
-    }
+public class TableroDTO  implements Serializable{
+    private static final long serialVersionUID = -912157098380179388L;
+    
+    
+   
 }

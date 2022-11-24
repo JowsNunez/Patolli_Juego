@@ -6,6 +6,8 @@
 package mx.patolli.vistas;
 
 import mx.patolli.cliente.Cliente;
+import mx.patolli.utils.ProtocoloMensaje;
+
 import mx.patolli.control.ControlCliente;
 
 /**
@@ -129,7 +131,7 @@ public class GuiIniciar extends Gui {
         Cliente cliente =control.getSocket();
         cliente.setNombre(txtUsuario.getText());
         control.iniciarHilos();
-        control.enviarNombre(txtUsuario.getText());
+        control.enviar(new ProtocoloMensaje("INICIAR",txtUsuario.getText()));
         GuiPrincipal principal = new GuiPrincipal(control);
         principal.setVisible(true);
         this.setVisible(false);

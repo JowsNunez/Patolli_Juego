@@ -1,7 +1,7 @@
-package mx.patolli.dominio;
+package dominioDTO;
 
-import java.io.Serial;
 import java.io.Serializable;
+import mx.patolli.dominio.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,28 +13,27 @@ import java.io.Serializable;
  *
  * @author Kevin Rios
  */
-public class Jugador implements Serializable{
-    @Serial
+public class JugadorDTO  implements Serializable{
     private static final long serialVersionUID = -912157098380179388L;
     private String nombre;
     private int fichas;
     private int puntos;
-    private String fondo;
+    private int fondo;
     private String color;
+    private JugadorDTO instance;
     private boolean listo;
-    private IEstado estado;
 
-    public Jugador() {
+    public JugadorDTO() {
     }
 
-    public Jugador(String nombre, int fichas, int puntos, String fondo, String color) {
+    public JugadorDTO(String nombre, int fichas, int puntos, int fondo, String color) {
         this.nombre = nombre;
         this.fichas = fichas;
         this.puntos = puntos;
         this.fondo = fondo;
         this.color = color;
     }
-
+    
     public String getNombre() {
         return nombre;
     }
@@ -59,11 +58,11 @@ public class Jugador implements Serializable{
         this.puntos = puntos;
     }
 
-    public String getFondo() {
+    public int getFondo() {
         return fondo;
     }
 
-    public void setFondo(String fondo) {
+    public void setFondo(int fondo) {
         this.fondo = fondo;
     }
 
@@ -75,6 +74,13 @@ public class Jugador implements Serializable{
         this.color = color;
     }
 
+    public JugadorDTO getInstance() {
+        return instance;
+    }
+
+    public void setInstance(JugadorDTO instance) {
+        this.instance = instance;
+    }
 
     public boolean isListo() {
         return listo;
@@ -83,18 +89,6 @@ public class Jugador implements Serializable{
     public void setListo(boolean listo) {
         this.listo = listo;
     }
-
-    public IEstado getEstado() {
-        return estado;
-    }
-
-    public void setEstado(IEstado estado) {
-        this.estado = estado;
-    }
-
-    @Override
-    public String toString() {
-        return "Jugador{" + "nombre=" + nombre + ", fichas=" + fichas + ", puntos=" + puntos + ", fondo=" + fondo + ", color=" + color + ", listo=" + listo + '}';
-    }
-
+    
+    
 }

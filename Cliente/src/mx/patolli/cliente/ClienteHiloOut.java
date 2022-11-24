@@ -2,14 +2,15 @@ package mx.patolli.cliente;
 
 import java.io.*;
 import java.util.Scanner;
+import mx.patolli.utils.ProtocoloMensaje;
 
-public class ClienteHiloOut implements Runnable{
+public class ClienteHiloOut implements Runnable {
 
     private Cliente cliente;
-    private DataOutputStream out;
+    private ObjectOutputStream outObj;
 
-    public ClienteHiloOut(Cliente cliente){
-        this.cliente=cliente;
+    public ClienteHiloOut(Cliente cliente) {
+        this.cliente = cliente;
         iniciarDataOut();
 
     }
@@ -19,25 +20,28 @@ public class ClienteHiloOut implements Runnable{
         try {
             Scanner scanner = new Scanner(System.in);
             while (true) {
-                String str = scanner.nextLine();
-                this.out.writeUTF(str);
-
+                this.outObj.reset();
+                this.outObj.writeObject(new ProtocoloMensaje("", ""));
+                this.outObj.flush();
             }
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
 
     }
 
-    public void enviar(String str) throws IOException {
-        this.out.writeUTF(str);
+    public void enviarObj(ProtocoloMensaje o) throws IOException {
+        this.outObj.reset();
+        this.outObj.writeObject(o);
+        this.outObj.flush();
 
     }
 
-    private void iniciarDataOut(){
+    private void iniciarDataOut() {
         try {
-            this.out = new DataOutputStream(this.cliente.getSocket().getOutputStream());
-        }catch (Exception e){
+            this.outObj = new ObjectOutputStream(this.cliente.getSocket().getOutputStream());
+            this.outObj.flush();
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }

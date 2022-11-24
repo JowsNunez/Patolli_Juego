@@ -5,20 +5,26 @@
  */
 package mx.patolli.vistas;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import mx.patolli.control.ControlCliente;
+import mx.patolli.dominio.Jugador;
+import mx.patolli.utils.ProtocoloMensaje;
 
 /**
  *
  * @author Kevin Rios
  */
 public class GuiConfigurarJugador extends Gui {
+
     private ControlCliente control;
+
     /**
      * Creates new form GuiConfigurarJugador
      */
     public GuiConfigurarJugador(ControlCliente control) {
         initComponents();
-        this.control=control;
+        this.control = control;
         setLocationRelativeTo(null);
 
     }
@@ -179,9 +185,35 @@ public class GuiConfigurarJugador extends Gui {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-        GuiSala sala = new GuiSala(control);
-        sala.setVisible(true);
-        this.setVisible(false);
+        Jugador j = new Jugador();
+
+        if (this.btnColorAmarillo.isSelected()) {
+            j.setColor("YELLOW");
+        } else if (this.btnColorRojo.isSelected()) {
+            j.setColor("RED");
+        } else if (this.btnColorVerde.isSelected()) {
+            j.setColor("GREEN");
+        } else if (this.btnColorAzul.isSelected()) {
+            j.setColor("BLUE");
+        }
+        System.out.println("  ");
+        if (this.btnAvatar01.isSelected()) {
+            j.setFondo("avatar01");
+        } else if (this.btnAvatar02.isSelected()) {
+            j.setFondo("avatar02");
+        } else if (this.btnAvatar03.isSelected()) {
+            j.setFondo("avatar03");
+        } else if (this.btnAvatar04.isSelected()) {
+            j.setFondo("avatar04");
+        }
+
+        this.control.enviar(new ProtocoloMensaje("CONFIGURARJUGADOR", j));
+        
+            GuiSala sala = new GuiSala(control);
+            sala.setVisible(true);
+            this.setVisible(false);
+        
+
     }//GEN-LAST:event_btnContinuarActionPerformed
 
 

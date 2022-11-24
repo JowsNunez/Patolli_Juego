@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mx.patolli.modelos;
+package mx.patolli.dominio;
 
 import java.util.List;
 
@@ -10,23 +10,22 @@ import java.util.List;
  *
  * @author el_fr
  */
-public class CasillaTriangular implements Casilla {
-
+public class CasillaNormal implements Casilla{
      private List<Ficha> fichas;
      private int posicionX;
     private int posicionY;
 
-    public CasillaTriangular() {
+    public CasillaNormal() {
     }
 
-    public CasillaTriangular(int posicionX, int posicionY) {
+    public CasillaNormal(int posicionX, int posicionY) {
         this.posicionX = posicionX;
         this.posicionY = posicionY;
     }
     
     
-    
-@Override
+
+    @Override
     public List<Ficha> getFichas() {
         return this.fichas;
     }
@@ -50,7 +49,7 @@ public class CasillaTriangular implements Casilla {
     
      @Override
     public String toString() {
-        return "Casilla Triangular";
+        return "Casilla Normal";
     }
     
 

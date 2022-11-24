@@ -1,4 +1,6 @@
-package mx.patolli.dominio;
+package dominioDTO;
+
+import mx.patolli.dominio.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,10 +12,11 @@ package mx.patolli.dominio;
  *
  * @author Kevin Rios
  */
-public class Ficha {
-    private String color;
-    private Jugador jugador;
-    public Ficha ficha(Ficha ficha){
-        return ficha;
+public class CaniaDTO {
+    private int valor;
+    
+    
+    public CaniaDTO cania (CaniaDTO cania){
+        return cania;
     }
 }

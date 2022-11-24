@@ -14,19 +14,21 @@ import java.util.List;
  *
  * @author Kevin Rios
  */
-public class Partida implements Serializable {
+public class Partida implements Serializable, IObservable {
+
     @Serial
     private static final long serialVersionUID = -912157098380179388L;
-
     private int numJugadores;
     private int numAspas;
     private List<Jugador> jugadores;
     private Tablero tablero;
     private int numFichas;
     private int apuesta;
+    private ArrayList<IObserver> observers;
 
     public Partida() {
-                this.jugadores=new ArrayList<>();
+        this.observers = new ArrayList<>();
+        this.jugadores = new ArrayList<>();
 
     }
 
@@ -89,6 +91,29 @@ public class Partida implements Serializable {
     @Override
     public String toString() {
         return "Partida{" + "numJugadores=" + numJugadores + ", numAspas=" + numAspas + ", jugadores=" + jugadores + ", tablero=" + tablero + ", numFichas=" + numFichas + ", apuesta=" + apuesta + '}';
+    }
+
+    @Override
+    public void agregarObservador(IObserver e) {
+        this.observers.add(e);
+    }
+
+    @Override
+    public void eliminarObservador(IObserver e) {
+        this.observers.remove(e);
+    }
+
+    @Override
+    public void notificarObervadores() {
+        if (!this.observers.isEmpty()) {
+            this.observers.forEach(e -> e.update());
+        }
+
+    }
+
+    @Override
+    public void setCambios() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

@@ -3,13 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.patolli.modelos;
+package mx.patolli.dominio;
+
+import java.io.Serial;
+import java.io.Serializable;
 
 /**
  *
  * @author Kevin Rios
  */
-public class Ganador implements IEstado{
+public class Perdedor implements IEstado,Serializable{
+    @Serial
+    private static final long serialVersionUID = -912157098380179388L;
 
     @Override
     public void enEspera() {
@@ -34,6 +39,11 @@ public class Ganador implements IEstado{
     @Override
     public void setJugador(Jugador jugador) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+     @Override
+    public String toString() {
+        return "{Perdedor}";
     }
     
 }

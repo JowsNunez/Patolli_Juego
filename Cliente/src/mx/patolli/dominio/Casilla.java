@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.patolli.modelos;
+package mx.patolli.dominio;
 
 import java.util.List;
 
@@ -14,4 +14,6 @@ import java.util.List;
 public interface Casilla {
 
     List<Ficha> getFichas();
+    public int getPosicionX();
+    public int getPosicionY();
 }

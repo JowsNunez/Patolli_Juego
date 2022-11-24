@@ -5,6 +5,8 @@
  */
 package mx.patolli.vistas;
 
+import mx.patolli.utils.ProtocoloMensaje;
+
 import mx.patolli.control.ControlCliente;
 
 /**
@@ -128,13 +130,14 @@ public class GuiPrincipal extends Gui {
 
     private void btnUnirsePartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnirsePartidaActionPerformed
 
+        this.control.enviar(new ProtocoloMensaje("UNIRSE",""));
         GuiBuscarPartida buscarPartida = new GuiBuscarPartida(control);
         buscarPartida.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnUnirsePartidaActionPerformed
 
     private void btnCrearPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPartidaActionPerformed
-        this.control.enviarNombre("CREAR");
+        this.control.enviar(new ProtocoloMensaje("CREAR",""));
         GuiConfigurarPartida configurarPartida = new GuiConfigurarPartida(control);
         configurarPartida.setVisible(true);
         this.setVisible(false);
