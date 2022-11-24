@@ -130,6 +130,7 @@ public class GuiPrincipal extends Gui {
 
     private void btnUnirsePartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnirsePartidaActionPerformed
 
+        this.control.enviar(new ProtocoloMensaje("UNIRSE",""));
         GuiBuscarPartida buscarPartida = new GuiBuscarPartida(control);
         buscarPartida.setVisible(true);
         this.setVisible(false);

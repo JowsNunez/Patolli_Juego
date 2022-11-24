@@ -165,9 +165,8 @@ public class GuiBuscarPartida extends Gui {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnUnirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnirseActionPerformed
+        this.control.enviar(new ProtocoloMensaje("UNIRSEPARTIDA",txtPartida.getText()));
         GuiConfigurarJugador configurar = new GuiConfigurarJugador(control);
-        this.control.enviar(new ProtocoloMensaje("UNIRSE",""));
-        this.control.enviar(new ProtocoloMensaje("",txtPartida.getText()));
         configurar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnUnirseActionPerformed

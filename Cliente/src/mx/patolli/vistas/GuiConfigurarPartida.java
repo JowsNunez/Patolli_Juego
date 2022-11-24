@@ -8,7 +8,7 @@ package mx.patolli.vistas;
 import mx.patolli.utils.ProtocoloMensaje;
 
 import mx.patolli.control.ControlCliente;
-import mx.patolli.modelos.Partida;
+import mx.patolli.dominio.Partida;
 
 /**
  *
@@ -246,14 +246,16 @@ public class GuiConfigurarPartida extends Gui {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-        GuiConfigurarJugador configurarJugador = new GuiConfigurarJugador(control);
+        
         Partida p = new Partida();
         p.setApuesta(Integer.parseInt(this.txtMonto.getText()));
         p.setNumFichas(Integer.parseInt(this.comboFichas.getSelectedItem().toString()));
         p.setNumJugadores((Integer.parseInt(this.comboJugadores.getSelectedItem().toString())));
         p.setNumAspas(Integer.parseInt(this.comboAspas.getSelectedItem().toString()));
         System.out.println(p);
-        this.control.enviar(new ProtocoloMensaje("a",p));
+        this.control.enviar(new ProtocoloMensaje("CONFIGURARJUEGO",p));
+        
+        GuiConfigurarJugador configurarJugador = new GuiConfigurarJugador(control);
         configurarJugador.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnContinuarActionPerformed
