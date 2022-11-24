@@ -5,12 +5,16 @@
  */
 package mx.patolli.dominio;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 /**
  *
  * @author Kevin Rios
  */
-public class Perdedor implements IEstado{
-
+public class Perdedor implements IEstado, Serializable {
+    @Serial
+    private static final long serialVersionUID = -912157098380179388L;
     @Override
     public void enEspera() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

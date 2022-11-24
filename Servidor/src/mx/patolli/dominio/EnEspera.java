@@ -6,11 +6,16 @@ package mx.patolli.dominio;
  * and open the template in the editor.
  */
 
+import java.io.Serial;
+import java.io.Serializable;
+
 /**
  *
  * @author Kevin Rios
  */
-public class EnEspera implements IEstado{
+public class EnEspera implements IEstado, Serializable {
+    @Serial
+    private static final long serialVersionUID = -912157098380179388L;
 
     @Override
     public void enEspera() {

@@ -3,62 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.patolli.modelos;
+package mx.patolli.dominio;
+
+import java.io.Serial;
+import java.io.Serializable;
 
 /**
  *
  * @author Kevin Rios
  */
-public class Jugador {
+public class Jugador implements Serializable{
+    @Serial
+    private static final long serialVersionUID = -912157098380179388L;
     private String nombre;
     private int fichas;
     private int puntos;
-    private int fondo;
+    private String fondo;
     private String color;
-    private Jugador instance;
-    
+    private boolean listo;
+    private IEstado estado;
+
     public Jugador() {
     }
 
-    public Jugador(String nombre, int fichas, int puntos, int fondo, String color) {
+    public Jugador(String nombre, int fichas, int puntos, String fondo, String color) {
         this.nombre = nombre;
         this.fichas = fichas;
         this.puntos = puntos;
         this.fondo = fondo;
         this.color = color;
     }
-    
-    public void abandonarPartida(){
-        
-    }
-    
-    public void hacerJugada(){
-        
-    }
-    
-    public void solicitarInicio(){
-        
-    }
-    
-    public void crearSala(){
-        
-    }
-    
-    public void unirseSala(){
-        
-    }
-    public void seleccionarColor(){
-        
-    }
-    
-    public void seleccionarAvatar(){
-        
-    }
-    
-    public void volverAJugar(){
-        
-    }
-    
+
     public String getNombre() {
         return nombre;
     }
@@ -83,11 +58,11 @@ public class Jugador {
         this.puntos = puntos;
     }
 
-    public int getFondo() {
+    public String getFondo() {
         return fondo;
     }
 
-    public void setFondo(int fondo) {
+    public void setFondo(String fondo) {
         this.fondo = fondo;
     }
 
@@ -99,12 +74,28 @@ public class Jugador {
         this.color = color;
     }
 
-    public Jugador getInstance() {
-        return instance;
+
+    public boolean isListo() {
+        return listo;
     }
 
-    public void setInstance(Jugador instance) {
-        this.instance = instance;
+    public void setListo(boolean listo) {
+        this.listo = listo;
     }
-    
+
+    public IEstado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(IEstado estado) {
+        this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return "Jugador{" + "nombre=" + nombre + ", fichas=" + fichas + ", puntos=" + puntos + ", fondo=" + fondo + ", color=" + color + ", listo=" + listo + ", estado=" + estado + '}';
+    }
+
+   
+
 }

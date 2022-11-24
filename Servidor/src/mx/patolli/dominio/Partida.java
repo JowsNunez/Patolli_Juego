@@ -5,7 +5,9 @@ package mx.patolli.dominio;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,6 +15,8 @@ import java.util.List;
  * @author Kevin Rios
  */
 public class Partida implements Serializable {
+    @Serial
+    private static final long serialVersionUID = -912157098380179388L;
 
     private int numJugadores;
     private int numAspas;
@@ -22,6 +26,8 @@ public class Partida implements Serializable {
     private int apuesta;
 
     public Partida() {
+                this.jugadores=new ArrayList<>();
+
     }
 
     public Partida(int numJugadores, int numAspas, Tablero tablero, int numFichas, int apuesta) {

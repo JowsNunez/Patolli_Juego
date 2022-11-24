@@ -5,11 +5,16 @@
  */
 package mx.patolli.dominio;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 /**
  *
  * @author Kevin Rios
  */
-public class EnTurno implements IEstado{
+public class EnTurno implements IEstado, Serializable {
+    @Serial
+    private static final long serialVersionUID = -912157098380179388L;
 
     @Override
     public void enEspera() {
