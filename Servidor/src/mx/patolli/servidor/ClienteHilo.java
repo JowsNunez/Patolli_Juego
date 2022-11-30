@@ -50,8 +50,7 @@ public class ClienteHilo implements Runnable {
                     //     out.flush();
                     this.aEntrado = false;
                 }
-                
-                
+
                 msg = (ProtocoloMensaje) this.in.readObject();
                 System.out.println(msg);
                 Opciones opcion = Opciones.valueOf(msg.getComando());
@@ -76,7 +75,7 @@ public class ClienteHilo implements Runnable {
                         this.cliente.setJugador(j);
 
                         this.sala = Servidor.getInstance().buscarSala(idSala);
-                        this.out.writeObject(new ProtocoloMensaje("PARTIDA", this.sala.getPartida()));
+                        this.out.writeObject(new ProtocoloMensaje("UNIRSEPARTIDA", this.sala.getPartida()));
 
                         if (this.sala.getClientes().size() <= this.sala.getNumClientes()) {
                             this.sala.getClientes().add(this.cliente);

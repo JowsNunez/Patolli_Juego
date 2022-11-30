@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import mx.patolli.control.ControlCliente;
 import mx.patolli.dominio.Jugador;
 import mx.patolli.utils.ProtocoloMensaje;
+import java.util.List;
 
 /**
  *
@@ -25,6 +26,7 @@ public class GuiConfigurarJugador extends Gui {
     public GuiConfigurarJugador(ControlCliente control) {
         initComponents();
         this.control = control;
+        verificarColores();
         setLocationRelativeTo(null);
 
     }
@@ -186,6 +188,7 @@ public class GuiConfigurarJugador extends Gui {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
+
         Jugador j = new Jugador();
 
         if (this.btnColorAmarillo.isSelected()) {
@@ -209,14 +212,36 @@ public class GuiConfigurarJugador extends Gui {
         }
 
         this.control.enviar(new ProtocoloMensaje("CONFIGURARJUGADOR", j));
-        
-            GuiSala sala = new GuiSala(control);
-            sala.setVisible(true);
-            this.setVisible(false);
-        
+
+        GuiSala sala = new GuiSala(control);
+        sala.setVisible(true);
+        this.setVisible(false);
+
 
     }//GEN-LAST:event_btnContinuarActionPerformed
 
+    public void verificarColores() {
+
+        List<Jugador> jugadores = this.control.getPartida().getJugadores();
+        if (!jugadores.isEmpty()) {
+            jugadores.forEach(e -> {
+                if (e.getColor().equals("YELLOW")) {
+                    this.btnColorAmarillo.setVisible(false);
+                }
+                if (e.getColor().equals("BLUE")) {
+                    this.btnColorAzul.setVisible(false);
+                }
+                if (e.getColor().equals("RED")) {
+                    this.btnColorRojo.setVisible(false);
+                }
+                if (e.getColor().equals("GREEN")) {
+                    this.btnColorVerde.setVisible(false);
+                }
+            });
+
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup botonesAvatar;

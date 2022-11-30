@@ -62,12 +62,17 @@ public class ClienteHiloIn implements Runnable {
                     this.partida.notificarObervadores();
 
                 }
-                
+
+                if (str.getComando().equals("UNIRSEPARTIDA")) {
+                    Partida aux = (Partida) str.getObj();
+                    this.partida.setJugadores(aux.getJugadores());
+                }
+
                 if (str.getComando().equals("INICIARPARTIDA")) {
                     this.partida.notificarObervadores();
                     new GuiTablero(this.control).setVisible(true);
                 }
-                System.out.println(str);
+
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
