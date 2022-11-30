@@ -73,6 +73,10 @@ public class ClienteHiloIn implements Runnable {
                     new GuiTablero(this.control).setVisible(true);
                 }
 
+                if (str.getComando().equals("JUGARTURNO")) {
+                    this.partida.notificarObervadores();
+                }
+
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());

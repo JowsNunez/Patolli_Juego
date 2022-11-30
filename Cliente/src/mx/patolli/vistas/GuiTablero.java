@@ -14,9 +14,11 @@ import javax.swing.ImageIcon;
 import javax.swing.border.BevelBorder;
 import mx.patolli.cliente.Cliente;
 import mx.patolli.control.ControlCliente;
+import mx.patolli.dominio.EnTurno;
 import mx.patolli.dominio.IObservable;
 import mx.patolli.dominio.IObserver;
 import mx.patolli.dominio.Jugador;
+import mx.patolli.utils.ProtocoloMensaje;
 
 /**
  *
@@ -34,17 +36,18 @@ public class GuiTablero extends Gui implements IObserver {
     public GuiTablero(ControlCliente control) {
         this.control = control;
         initComponents();
-        llenarTablero();
+
         setLocationRelativeTo(null);
         tablero.setBounds(0, 0, 680, 680);
         tablero.setOpaque(false);
         tablero.setBackground(new Color(108, 108, 108));
         jPanel8.add(tablero);
         jPanel8.setOpaque(true);
+
         this.observer = (IObservable) control.getPartida();
 
         this.observer.agregarObservador(this);
-
+        update();
         // jPanel1.add(tablero);
         setExtendedState(this.MAXIMIZED_BOTH);
     }
@@ -292,7 +295,7 @@ public class GuiTablero extends Gui implements IObserver {
         jLabel17.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 0, 0));
         jLabel17.setText("Turno: JUAN");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 20, 260, -1));
 
         jButton2.setBackground(new java.awt.Color(105, 105, 105));
         jButton2.setText("Jugar Turno");
@@ -372,7 +375,7 @@ public class GuiTablero extends Gui implements IObserver {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        this.control.enviar(new ProtocoloMensaje("JUGARTURNO", ""));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -413,6 +416,13 @@ public class GuiTablero extends Gui implements IObserver {
         int contador = 0;
         for (Iterator iterator = control.getPartida().getJugadores().iterator(); iterator.hasNext();) {
             Jugador next = (Jugador) iterator.next();
+            if (next.getEstado() instanceof EnTurno) {
+                System.out.println(control.getPartida().getJugadores());
+                this.jLabel17.setText("TURNO: " + next.getNombre());
+               // this.jButton2.setVisible(true);
+            } else {
+                //this.jButton2.setVisible(false);
+            }
             if (contador == 0) {
                 txtNombreJugador1.setText(next.getNombre());
                 lblFondoJugador1.setIcon(new ImageIcon(getClass().getResource("/mx/patolli/imagenes/" + next.getFondo() + ".png")));

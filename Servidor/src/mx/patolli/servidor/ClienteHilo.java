@@ -12,6 +12,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import mx.patolli.dominio.EnTurno;
 import mx.patolli.dominio.Jugador;
 import mx.patolli.dominio.Partida;
 import mx.patolli.utils.ProtocoloMensaje;
@@ -62,6 +63,8 @@ public class ClienteHilo implements Runnable {
                         sala.setAdministrador(this.cliente);
                         j = new Jugador();
                         j.setNombre(this.cliente.getNombre());
+                        j.setTurno(this.sala.getTurnos());
+                        this.sala.setTurnos(this.sala.getTurnos() + 1);
                         this.cliente.setJugador(j);
                         this.sala.getClientes().add(this.cliente);
 
@@ -106,7 +109,10 @@ public class ClienteHilo implements Runnable {
                         Jugador aux = (Jugador) msg.getObj();
                         this.cliente.getJugador().setFondo(aux.getFondo());
                         this.cliente.getJugador().setColor(aux.getColor());
-                        this.cliente.getJugador().setEstado(new EnEspera());
+
+                        if (this.cliente.getJugador().getTurno() == 1) {
+                            this.cliente.getJugador().enTurno();
+                        } 
                         this.sala.getPartida().getJugadores().add(this.cliente.getJugador());
 
                         this.sala.getClientes().forEach(e -> {
@@ -151,6 +157,33 @@ public class ClienteHilo implements Runnable {
                             try {
                                 e.getOut().reset();
                                 e.getOut().writeObject(new ProtocoloMensaje("INICIARPARTIDA", ""));
+                                e.getOut().flush();
+
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+                        });
+
+                        break;
+                    case JUGARTURNO:
+                        if (this.cliente.getJugador().getEstado() instanceof EnTurno) {
+                            this.cliente.getJugador().enEspera();
+                        }
+                        System.out.println(this.sala.getTurnoActual());
+                        this.sala.cambiarTurno();
+                        int turnoActual = this.sala.getTurnoActual();
+                        this.sala.getPartida().getJugadores().forEach(e -> {
+                            if (e.getTurno() == turnoActual) {
+                                e.enTurno();
+                            } else {
+                                e.enEspera();
+                            }
+
+                        });
+                        this.sala.getClientes().forEach(e -> {
+                            try {
+                                e.getOut().reset();
+                                e.getOut().writeObject(new ProtocoloMensaje("JUGARTURNO", this.sala.getPartida()));
                                 e.getOut().flush();
 
                             } catch (IOException ex) {

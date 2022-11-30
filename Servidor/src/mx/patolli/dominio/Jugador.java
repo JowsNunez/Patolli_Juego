@@ -27,6 +27,8 @@ public class Jugador implements Serializable {
     private int[] ruta;
 
     public Jugador() {
+        this.estado=new EnEspera();
+        this.estado.setJugador(this);
     }
 
     public Jugador(String nombre, int fichas, int puntos, String fondo, String color) {

@@ -1,6 +1,5 @@
 package mx.patolli.servidor;
 
-
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
@@ -14,14 +13,16 @@ public class Sala implements Serializable {
     private int numClientes;
     private Partida partida;
     private Cliente administrador;
+    private int turnoActual;
+    private int turno;
 
-
-    public Sala(){
-        this.clientes= new HashSet<>();
+    public Sala() {
+        this.clientes = new HashSet<>();
+        turno = 1;
     }
 
-    public Sala(int numClientes){
-        this.numClientes=numClientes;
+    public Sala(int numClientes) {
+        this.numClientes = numClientes;
     }
 
     public String getIdSala() {
@@ -63,8 +64,30 @@ public class Sala implements Serializable {
     public void setPartida(Partida partida) {
         this.partida = partida;
     }
-    
-    
+
+    public int getTurnos() {
+        return turno;
+    }
+
+    public void setTurnos(int turnos) {
+        this.turno = turnos;
+    }
+
+    public int getTurnoActual() {
+        return turnoActual;
+    }
+
+    public void setTurnoActual(int turnoActual) {
+        this.turnoActual = turnoActual;
+    }
+
+    public void cambiarTurno() {
+        if (turnoActual == numClientes) {
+            turnoActual = 1;
+        } else {
+            turnoActual++;
+        }
+    }
 
     @Override
     public String toString() {
