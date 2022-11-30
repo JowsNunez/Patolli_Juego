@@ -3,3 +3,5 @@
 */out
 Cliente/nbproject
 Servidor/nbproject
+/Servidor/dist/
+/Cliente/dist/

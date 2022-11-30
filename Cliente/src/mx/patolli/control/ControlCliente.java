@@ -7,6 +7,10 @@ import mx.patolli.cliente.ClienteHiloOut;
 import java.io.IOException;
 import mx.patolli.dominio.Partida;
 import mx.patolli.utils.ProtocoloMensaje;
+import mx.patolli.vistas.Gui;
+import mx.patolli.vistas.GuiBuscarPartida;
+import mx.patolli.vistas.GuiSala;
+import mx.patolli.vistas.GuiTablero;
 
 public class ControlCliente implements IControl<Object>{
 
@@ -22,6 +26,7 @@ public class ControlCliente implements IControl<Object>{
         if(Cliente.getInstance().getSocket().isConnected()){
             clienteIn = new ClienteHiloIn(Cliente.getInstance());
             clienteOut = new ClienteHiloOut(Cliente.getInstance());
+            this.clienteIn.setControl(this);
             Thread thread1 = new Thread(clienteIn);
             Thread thread2 = new Thread(clienteOut);
             thread1.start();

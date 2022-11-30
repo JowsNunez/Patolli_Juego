@@ -5,6 +5,8 @@
  */
 package mx.patolli.dominio;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +14,9 @@ import java.util.List;
  *
  * @author Kevin Rios
  */
-public class Tablero {
-
+public class Tablero implements Serializable{
+  @Serial
+    private static final long serialVersionUID = -912157098380179388L;
     private List<Casilla> casillas;
     private String urlImagen;
 

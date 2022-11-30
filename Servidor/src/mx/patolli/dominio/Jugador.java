@@ -8,12 +8,12 @@ import java.io.Serializable;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Kevin Rios
  */
-public class Jugador implements Serializable{
+public class Jugador implements Serializable {
+
     @Serial
     private static final long serialVersionUID = -912157098380179388L;
     private String nombre;
@@ -23,6 +23,8 @@ public class Jugador implements Serializable{
     private String color;
     private boolean listo;
     private IEstado estado;
+    private int turno;
+    private int[] ruta;
 
     public Jugador() {
     }
@@ -75,7 +77,6 @@ public class Jugador implements Serializable{
         this.color = color;
     }
 
-
     public boolean isListo() {
         return listo;
     }
@@ -90,6 +91,22 @@ public class Jugador implements Serializable{
 
     public void setEstado(IEstado estado) {
         this.estado = estado;
+    }
+
+    public int getTurno() {
+        return turno;
+    }
+
+    public void setTurno(int turno) {
+        this.turno = turno;
+    }
+
+    public int[] getRuta() {
+        return ruta;
+    }
+
+    public void setRuta(int[] ruta) {
+        this.ruta = ruta;
     }
 
     @Override

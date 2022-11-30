@@ -1,4 +1,4 @@
-package dominioDTO;
+package mx.patolli.dominioDTO;
 
 import mx.patolli.dominio.*;
 

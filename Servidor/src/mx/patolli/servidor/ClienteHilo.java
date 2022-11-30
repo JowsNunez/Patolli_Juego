@@ -35,7 +35,7 @@ public class ClienteHilo implements Runnable {
             ProtocoloMensaje msg;
             this.in = this.cliente.getIn();
             this.out = this.cliente.getOut();
-            Jugador  j;
+            Jugador j;
 
             this.cliente.setIn(in);
             this.cliente.setOut(out);
@@ -48,7 +48,6 @@ public class ClienteHilo implements Runnable {
 
                     //       out.writeObject(new ProtocoloMensaje("a entrado", "A entrado"));
                     //     out.flush();
-
                     this.aEntrado = false;
                 }
 
@@ -60,25 +59,24 @@ public class ClienteHilo implements Runnable {
                         System.out.println(new Mensaje(cliente.getIdCliente() + " " + cliente.getNombre(), " Selecciono CREAR PARTIDA", "Servidor").createMensaje(" > "));
                         this.sala = new Sala();
                         sala.setAdministrador(this.cliente);
-                        j=new Jugador();
+                        j = new Jugador();
                         j.setNombre(this.cliente.getNombre());
                         this.cliente.setJugador(j);
                         this.sala.getClientes().add(this.cliente);
 
-                        
                         break;
                     case UNIRSE:
                         System.out.println(new Mensaje(cliente.getIdCliente() + " " + cliente.getNombre(), " Selecciono UNIRSE PARTIDA", "Servidor").createMensaje(" > "));
                         msg = (ProtocoloMensaje) this.in.readObject();
                         String idSala = msg.getObj().toString();
-                        j =new Jugador();
+                        j = new Jugador();
                         j.setNombre(this.cliente.getNombre());
                         this.cliente.setJugador(j);
 
                         this.sala = Servidor.getInstance().buscarSala(idSala);
                         this.out.writeObject(new ProtocoloMensaje("PARTIDA", this.sala.getPartida()));
 
-                        if (this.sala.getClientes().size() <= this.sala.getNumClientes() ) {
+                        if (this.sala.getClientes().size() <= this.sala.getNumClientes()) {
                             this.sala.getClientes().add(this.cliente);
                             this.sala.getClientes().forEach(System.out::println);
                             Servidor.getInstance().mostarTodo();
@@ -91,7 +89,7 @@ public class ClienteHilo implements Runnable {
                         break;
                     case CONFIGURARJUEGO:
                         System.out.println(new Mensaje(cliente.getIdCliente() + " " + cliente.getNombre(), " Selecciono CONFIGURAR JUEGO", "Servidor").createMensaje(" > "));
-                        
+
                         Partida partida = (Partida) msg.getObj();
                         this.sala.setPartida(partida);
                         this.sala.setNumClientes(partida.getNumJugadores());
@@ -99,29 +97,66 @@ public class ClienteHilo implements Runnable {
                         Servidor.getInstance().agregarSala(sala);
                         Servidor.getInstance().mostrarSala(sala);
                         this.out.writeObject(new ProtocoloMensaje("PARTIDA", partida));
-                        
+
                         break;
                     case CONFIGURARJUGADOR:
                         System.out.println(new Mensaje(cliente.getIdCliente() + " " + cliente.getNombre(), " Selecciono CONFIGURAR JUGADOR", "Servidor").createMensaje(" > "));
 
-
-                        Jugador aux = (Jugador)msg.getObj();
+                        Jugador aux = (Jugador) msg.getObj();
                         this.cliente.getJugador().setFondo(aux.getFondo());
-                         this.cliente.getJugador().setColor(aux.getColor());
-                         this.cliente.getJugador().setEstado(new EnEspera());
+                        this.cliente.getJugador().setColor(aux.getColor());
+                        this.cliente.getJugador().setEstado(new EnEspera());
                         this.sala.getPartida().getJugadores().add(this.cliente.getJugador());
 
+                        this.sala.getClientes().forEach(e -> {
+                            try {
+                                e.getOut().reset();
+                                e.getOut().writeObject(new ProtocoloMensaje("CONFIGURACION JUGADOR", this.sala.getPartida()));
+                                e.getOut().flush();
 
-                         this.sala.getClientes().forEach(e -> {
-                             try {
-                                 e.getOut().reset();
-                                 e.getOut().writeObject(new ProtocoloMensaje("CONFIGURACION JUGADOR",this.sala.getPartida()));
-                                 e.getOut().flush();
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+                        });
+                        break;
+                    case VOTAR:
+                        System.out.println(new Mensaje(cliente.getIdCliente() + " " + cliente.getNombre(), " Selecciono VOTAR", "Servidor").createMensaje(" > "));
 
-                             } catch (IOException ex) {
-                                 ex.printStackTrace();
-                             }
-                         });
+                        boolean voto = (boolean) msg.getObj();
+                        this.cliente.getJugador().setListo(voto);
+                        this.sala.getPartida().getJugadores().forEach(e -> {
+                            if (e.getNombre().equals(this.cliente.getJugador().getNombre())) {
+                                e.setListo(voto);
+                            }
+                        });
+
+                        this.sala.getClientes().forEach(e -> {
+                            try {
+
+                                e.getOut().reset();
+                                e.getOut().writeObject(new ProtocoloMensaje("VOTAR", this.sala.getPartida()));
+                                e.getOut().flush();
+
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+                        });
+
+                        break;
+                    case INICIARPARTIDA:
+                        System.out.println(new Mensaje(cliente.getIdCliente() + " " + cliente.getNombre(), " Selecciono Iniciar", "Servidor").createMensaje(" > "));
+
+                        this.sala.getClientes().forEach(e -> {
+                            try {
+                                e.getOut().reset();
+                                e.getOut().writeObject(new ProtocoloMensaje("INICIARPARTIDA", ""));
+                                e.getOut().flush();
+
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+                        });
+
                         break;
                     default:
                         System.out.println(new Mensaje(cliente.getIdCliente(), " Error de Seleccion ", "Servidor").createErrorMensaje(" > "));

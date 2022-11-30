@@ -31,6 +31,7 @@ public class CasillaNormal implements Casilla{
     }
     
     
+     @Override
     public int getPosicionX() {
         return posicionX;
     }
@@ -39,6 +40,7 @@ public class CasillaNormal implements Casilla{
         this.posicionX = posicionX;
     }
 
+     @Override
     public int getPosicionY() {
         return posicionY;
     }

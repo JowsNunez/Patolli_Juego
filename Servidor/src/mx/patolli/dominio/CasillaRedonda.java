@@ -4,16 +4,21 @@
  */
 package mx.patolli.dominio;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author el_fr
  */
-public class CasillaRedonda implements CasillaEspecial {
+public class CasillaRedonda implements CasillaEspecial, Serializable {
 
-     private List<Ficha> fichas;
-     private int posicionX;
+    @Serial
+    private static final long serialVersionUID = -912157098380179388L;
+
+    private List<Ficha> fichas;
+    private int posicionX;
     private int posicionY;
 
     public CasillaRedonda() {
@@ -23,17 +28,12 @@ public class CasillaRedonda implements CasillaEspecial {
         this.posicionX = posicionX;
         this.posicionY = posicionY;
     }
-    
-    
-    
 
     @Override
     public List<Ficha> getFichas() {
         return this.fichas;
     }
-    
-    
-     @Override
+
     public int getPosicionX() {
         return posicionX;
     }
@@ -42,7 +42,6 @@ public class CasillaRedonda implements CasillaEspecial {
         this.posicionX = posicionX;
     }
 
-     @Override
     public int getPosicionY() {
         return posicionY;
     }
@@ -50,11 +49,10 @@ public class CasillaRedonda implements CasillaEspecial {
     public void setPosicionY(int posicionY) {
         this.posicionY = posicionY;
     }
-    
-     @Override
+
+    @Override
     public String toString() {
         return "Casilla Redonda";
     }
-    
 
 }

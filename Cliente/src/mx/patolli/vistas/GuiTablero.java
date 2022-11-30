@@ -8,26 +8,45 @@ package mx.patolli.vistas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.Iterator;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.border.BevelBorder;
+import mx.patolli.cliente.Cliente;
+import mx.patolli.control.ControlCliente;
+import mx.patolli.dominio.IObservable;
+import mx.patolli.dominio.IObserver;
+import mx.patolli.dominio.Jugador;
 
 /**
  *
  * @author Kevin Rios
  */
-public class GuiTablero extends Gui {
+public class GuiTablero extends Gui implements IObserver {
 
     Tablero tablero = new Tablero();
+    ControlCliente control;
+    private IObservable observer;
 
     /**
      * Creates new form GuiTablero
      */
-    public GuiTablero() {
+    public GuiTablero(ControlCliente control) {
+        this.control = control;
         initComponents();
+        llenarTablero();
         setLocationRelativeTo(null);
-        tablero.setBounds((1360 / 4) + 40, 10, 680, 680);
-        jPanel1.add(tablero);
+        tablero.setBounds(0, 0, 680, 680);
+        tablero.setOpaque(false);
+        tablero.setBackground(new Color(108, 108, 108));
+        jPanel8.add(tablero);
+        jPanel8.setOpaque(true);
+        this.observer = (IObservable) control.getPartida();
 
-         setExtendedState(this.MAXIMIZED_BOTH);
+        this.observer.agregarObservador(this);
+
+        // jPanel1.add(tablero);
+        setExtendedState(this.MAXIMIZED_BOTH);
     }
 
     /**
@@ -42,32 +61,35 @@ public class GuiTablero extends Gui {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblFondoJugador1 = new javax.swing.JLabel();
+        txtNombreJugador1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblFondoJugador2 = new javax.swing.JLabel();
+        txtNombreJugador2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        lblFondoJugador4 = new javax.swing.JLabel();
+        txtNombreJugador4 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        lblFondoJugador3 = new javax.swing.JLabel();
+        txtNombreJugador3 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tablero");
-        setPreferredSize(new java.awt.Dimension(1366, 700));
+        setMaximumSize(new java.awt.Dimension(1376, 700));
+        setMinimumSize(new java.awt.Dimension(1376, 700));
+        setPreferredSize(new java.awt.Dimension(1376, 700));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(105, 105, 105));
@@ -84,10 +106,10 @@ public class GuiTablero extends Gui {
         jPanel3.setMaximumSize(new java.awt.Dimension(283, 150));
         jPanel3.setPreferredSize(new java.awt.Dimension(283, 150));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/patolli/imagenes/avatar01.png"))); // NOI18N
+        lblFondoJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/patolli/imagenes/avatar01.png"))); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel2.setText("JUAN");
+        txtNombreJugador1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtNombreJugador1.setText("....");
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel3.setText("Fichas:");
@@ -102,11 +124,11 @@ public class GuiTablero extends Gui {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(lblFondoJugador1))
                 .addGap(60, 60, 60)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtNombreJugador1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 69, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -115,10 +137,10 @@ public class GuiTablero extends Gui {
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(txtNombreJugador1)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3))
-                    .addComponent(jLabel1))
+                    .addComponent(lblFondoJugador1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addGap(11, 11, 11))
@@ -131,10 +153,10 @@ public class GuiTablero extends Gui {
         jPanel4.setMaximumSize(new java.awt.Dimension(283, 150));
         jPanel4.setPreferredSize(new java.awt.Dimension(283, 150));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/patolli/imagenes/avatar01.png"))); // NOI18N
+        lblFondoJugador2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/patolli/imagenes/avatar01.png"))); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel6.setText("JUAN");
+        txtNombreJugador2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtNombreJugador2.setText("....");
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel7.setText("Fichas:");
@@ -149,11 +171,11 @@ public class GuiTablero extends Gui {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(lblFondoJugador2))
                 .addGap(60, 60, 60)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtNombreJugador2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 69, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -162,10 +184,10 @@ public class GuiTablero extends Gui {
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(txtNombreJugador2)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel7))
-                    .addComponent(jLabel4))
+                    .addComponent(lblFondoJugador2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel8)
                 .addGap(11, 11, 11))
@@ -178,10 +200,10 @@ public class GuiTablero extends Gui {
         jPanel5.setMaximumSize(new java.awt.Dimension(283, 150));
         jPanel5.setPreferredSize(new java.awt.Dimension(283, 150));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/patolli/imagenes/avatar01.png"))); // NOI18N
+        lblFondoJugador4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/patolli/imagenes/avatar01.png"))); // NOI18N
 
-        jLabel10.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel10.setText("JUAN");
+        txtNombreJugador4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtNombreJugador4.setText("....");
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel11.setText("Fichas:");
@@ -196,11 +218,11 @@ public class GuiTablero extends Gui {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                    .addComponent(lblFondoJugador4))
                 .addGap(60, 60, 60)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtNombreJugador4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 69, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -209,10 +231,10 @@ public class GuiTablero extends Gui {
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
+                        .addComponent(txtNombreJugador4)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel11))
-                    .addComponent(jLabel9))
+                    .addComponent(lblFondoJugador4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel12)
                 .addGap(11, 11, 11))
@@ -225,10 +247,10 @@ public class GuiTablero extends Gui {
         jPanel6.setMaximumSize(new java.awt.Dimension(283, 150));
         jPanel6.setPreferredSize(new java.awt.Dimension(283, 150));
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/patolli/imagenes/avatar01.png"))); // NOI18N
+        lblFondoJugador3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/patolli/imagenes/avatar01.png"))); // NOI18N
 
-        jLabel14.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel14.setText("JUAN");
+        txtNombreJugador3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtNombreJugador3.setText("...");
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel15.setText("Fichas:");
@@ -243,11 +265,11 @@ public class GuiTablero extends Gui {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
+                    .addComponent(lblFondoJugador3))
                 .addGap(60, 60, 60)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtNombreJugador3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 69, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -256,10 +278,10 @@ public class GuiTablero extends Gui {
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
+                        .addComponent(txtNombreJugador3)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel15))
-                    .addComponent(jLabel13))
+                    .addComponent(lblFondoJugador3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel16)
                 .addGap(11, 11, 11))
@@ -288,38 +310,62 @@ public class GuiTablero extends Gui {
             }
         });
 
+        jPanel8.setBackground(new java.awt.Color(108, 108, 108));
+        jPanel8.setMaximumSize(new java.awt.Dimension(680, 680));
+        jPanel8.setPreferredSize(new java.awt.Dimension(680, 680));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 680, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 680, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 930, Short.MAX_VALUE)
+                .addGap(81, 81, 81)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32))
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addGap(19, 19, 19)))
+                .addGap(124, 124, 124))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2)
+                        .addGap(136, 136, 136))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1376, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
         );
 
         pack();
@@ -333,33 +379,63 @@ public class GuiTablero extends Gui {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JLabel lblFondoJugador1;
+    private javax.swing.JLabel lblFondoJugador2;
+    private javax.swing.JLabel lblFondoJugador3;
+    private javax.swing.JLabel lblFondoJugador4;
+    private javax.swing.JLabel txtNombreJugador1;
+    private javax.swing.JLabel txtNombreJugador2;
+    private javax.swing.JLabel txtNombreJugador3;
+    private javax.swing.JLabel txtNombreJugador4;
     // End of variables declaration//GEN-END:variables
+
+    public void llenarTablero() {
+        int contador = 0;
+        for (Iterator iterator = control.getPartida().getJugadores().iterator(); iterator.hasNext();) {
+            Jugador next = (Jugador) iterator.next();
+            if (contador == 0) {
+                txtNombreJugador1.setText(next.getNombre());
+                lblFondoJugador1.setIcon(new ImageIcon(getClass().getResource("/mx/patolli/imagenes/" + next.getFondo() + ".png")));
+            }
+            if (contador == 1) {
+                txtNombreJugador2.setText(next.getNombre());
+                lblFondoJugador2.setIcon(new ImageIcon(getClass().getResource("/mx/patolli/imagenes/" + next.getFondo() + ".png")));
+            }
+            if (contador == 2) {
+                txtNombreJugador3.setText(next.getNombre());
+                lblFondoJugador3.setIcon(new ImageIcon(getClass().getResource("/mx/patolli/imagenes/" + next.getFondo() + ".png")));
+            }
+            if (contador == 3) {
+                txtNombreJugador4.setText(next.getNombre());
+                lblFondoJugador4.setIcon(new ImageIcon(getClass().getResource("/mx/patolli/imagenes/" + next.getFondo() + ".png")));
+            }
+
+            contador++;
+        }
+    }
+
+    @Override
+    public void update() {
+        llenarTablero();
+    }
 }

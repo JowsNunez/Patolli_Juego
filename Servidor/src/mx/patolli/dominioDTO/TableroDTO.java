@@ -1,5 +1,6 @@
-package dominioDTO;
+package mx.patolli.dominioDTO;
 
+import java.io.Serializable;
 import mx.patolli.dominio.*;
 
 /*
@@ -12,10 +13,9 @@ import mx.patolli.dominio.*;
  *
  * @author Kevin Rios
  */
-public class CasillaDTO {
-    private FichaDTO [] fichas;
+public class TableroDTO  implements Serializable{
+    private static final long serialVersionUID = -912157098380179388L;
     
-    private CasillaDTO(FichaDTO [] fichas){
-        
-    }
+    
+   
 }

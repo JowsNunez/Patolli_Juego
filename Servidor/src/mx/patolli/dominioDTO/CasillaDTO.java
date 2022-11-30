@@ -1,4 +1,4 @@
-package dominioDTO;
+package mx.patolli.dominioDTO;
 
 import mx.patolli.dominio.*;
 
@@ -12,10 +12,10 @@ import mx.patolli.dominio.*;
  *
  * @author Kevin Rios
  */
-public class FichaDTO {
-    private String color;
-    private JugadorDTO jugador;
-    public FichaDTO ficha(FichaDTO ficha){
-        return ficha;
+public class CasillaDTO {
+    private FichaDTO [] fichas;
+    
+    private CasillaDTO(FichaDTO [] fichas){
+        
     }
 }

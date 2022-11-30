@@ -1,4 +1,4 @@
-package dominioDTO;
+package mx.patolli.dominioDTO;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

@@ -1,4 +1,4 @@
-package dominioDTO;
+package mx.patolli.dominioDTO;
 
 import java.io.Serializable;
 import mx.patolli.dominio.*;
