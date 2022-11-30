@@ -13,7 +13,7 @@ import java.io.Serializable;
  * @author Kevin Rios
  */
 public class Jugador implements Serializable{
-    @Serial
+
     private static final long serialVersionUID = -912157098380179388L;
     private String nombre;
     private int fichas;

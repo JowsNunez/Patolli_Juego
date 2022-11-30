@@ -9,6 +9,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.util.List;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
@@ -40,7 +42,7 @@ public class Tablero extends JPanel implements MouseListener, MouseMotionListene
     Graphics2D g2d;
     static int x;
     static int y;
-    private BufferedImage imagen;
+    private Image imagen;
     private int a = 0;
     private int b = 10;
     private int c = 19;
@@ -95,16 +97,17 @@ public class Tablero extends JPanel implements MouseListener, MouseMotionListene
     }
 
     public void getTablero() {
-        try {
+        //try {
             // A modo de ejemplo, puse la imagen en el C:, sin embargo podrías agregarla a tu proyecto, o buscarla en otro directorio
-            this.imagen = ImageIO.read(new File("C:\\Users\\el_fr\\Documents\\ITSON\\Arquitectura de Software\\Pryecto_Patolli\\Cliente\\src\\mx\\patolli\\imagenes\\Tablero_10.png"));
+            System.out.println();
+            this.imagen = new ImageIcon(getClass().getResource("/mx/patolli/imagenes/Tablero_8.png")).getImage();
 
             System.out.println(this.imagen);
 
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+        //} catch (IOException e) {
+            //System.out.println(e.getMessage());
             // Controlar la excepcion si la imagen no se encuentra o no se pudo cargar
-        }
+        //}
     }
 
     @Override

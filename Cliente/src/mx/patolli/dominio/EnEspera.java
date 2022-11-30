@@ -13,32 +13,33 @@ import java.io.Serializable;
  * @author Kevin Rios
  */
 public class EnEspera implements IEstado, Serializable{
+    private Jugador jugador;
     @Serial
     private static final long serialVersionUID = -912157098380179388L;
 
     @Override
     public void enEspera() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.jugador.setEstado(new EnEspera());
     }
 
     @Override
     public void enTurno() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.jugador.setEstado(new EnTurno());
     }
 
     @Override
     public void ganador() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.jugador.setEstado(new Ganador());
     }
 
     @Override
     public void perdedor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.jugador.setEstado(new Perdedor());
     }
 
     @Override
     public void setJugador(Jugador jugador) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.jugador = jugador;
     }
 
     @Override

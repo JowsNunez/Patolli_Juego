@@ -17,16 +17,16 @@ public class ClienteHiloOut implements Runnable {
 
     @Override
     public void run() {
-        try {
-            Scanner scanner = new Scanner(System.in);
-            while (true) {
-                this.outObj.reset();
-                this.outObj.writeObject(new ProtocoloMensaje("", ""));
-                this.outObj.flush();
-            }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+//        try {
+//            Scanner scanner = new Scanner(System.in);
+//            while (true) {
+//                this.outObj.reset();
+//                this.outObj.writeObject(new ProtocoloMensaje("", ""));
+//                this.outObj.flush();
+//            }
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
 
     }
 
