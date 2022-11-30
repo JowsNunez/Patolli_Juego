@@ -13,32 +13,41 @@ import java.io.Serializable;
  * @author Kevin Rios
  */
 public class Ganador implements IEstado, Serializable {
-    @Serial
+   private Jugador jugador;
+
     private static final long serialVersionUID = -912157098380179388L;
 
     @Override
     public void enEspera() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.jugador.getEstado() instanceof Perdedor) {
+             throw new UnsupportedOperationException("El estado no puede cambiar", new Throwable("El estado no es válido"));
+        }
+        this.jugador.setEstado(new EnEspera());
     }
 
     @Override
     public void enTurno() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("El estado no puede cambiar", new Throwable("El estado no es válido"));
     }
 
     @Override
     public void ganador() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("El estado no puede cambiar", new Throwable("El estado no es válido"));
     }
 
     @Override
     public void perdedor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("El estado no puede cambiar", new Throwable("El estado no es válido"));
     }
 
     @Override
     public void setJugador(Jugador jugador) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.jugador = jugador;
+    }
+    
+     @Override
+    public String toString() {
+        return "{Ganador }";
     }
     
 }

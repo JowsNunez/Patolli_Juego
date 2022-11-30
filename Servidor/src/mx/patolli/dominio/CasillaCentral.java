@@ -13,7 +13,6 @@ import java.util.List;
  * @author el_fr
  */
 public class CasillaCentral implements CasillaEspecial, Serializable {
-    @Serial
     private static final long serialVersionUID = -912157098380179388L;
     private List<Ficha> fichas;
     private int posicionX;

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class CasillaNormal implements Casilla, Serializable {
 
-    @Serial
+  
     private static final long serialVersionUID = -912157098380179388L;
     private List<Ficha> fichas;
     private int posicionX;

@@ -15,7 +15,7 @@ import java.util.List;
  * @author Kevin Rios
  */
 public class Partida implements Serializable {
-    @Serial
+   
     private static final long serialVersionUID = -912157098380179388L;
 
     private int numJugadores;

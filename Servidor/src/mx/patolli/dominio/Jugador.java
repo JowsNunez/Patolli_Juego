@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 public class Jugador implements Serializable {
 
-    @Serial
+    
     private static final long serialVersionUID = -912157098380179388L;
     private String nombre;
     private int fichas;
@@ -85,14 +85,6 @@ public class Jugador implements Serializable {
         this.listo = listo;
     }
 
-    public IEstado getEstado() {
-        return estado;
-    }
-
-    public void setEstado(IEstado estado) {
-        this.estado = estado;
-    }
-
     public int getTurno() {
         return turno;
     }
@@ -109,6 +101,33 @@ public class Jugador implements Serializable {
         this.ruta = ruta;
     }
 
+     public IEstado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(IEstado estado) {
+        this.estado = estado;
+    }
+    
+   public void enEspera(){
+       this.estado.enEspera();
+       this.estado.setJugador(this);
+   }
+   
+   public void perdedor(){
+       this.estado.perdedor();
+       this.estado.setJugador(this);
+   }
+    
+   public void enTurno(){
+       this.estado.enTurno();
+       this.estado.setJugador(this);
+   }
+   
+   public void ganador(){
+        this.estado.ganador();
+        this.estado.setJugador(this);
+   }
     @Override
     public String toString() {
         return "Jugador{" + "nombre=" + nombre + ", fichas=" + fichas + ", puntos=" + puntos + ", fondo=" + fondo + ", color=" + color + ", listo=" + listo + '}';

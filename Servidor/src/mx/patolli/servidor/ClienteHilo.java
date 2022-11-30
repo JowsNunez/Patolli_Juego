@@ -50,8 +50,10 @@ public class ClienteHilo implements Runnable {
                     //     out.flush();
                     this.aEntrado = false;
                 }
-
+                
+                
                 msg = (ProtocoloMensaje) this.in.readObject();
+                System.out.println(msg);
                 Opciones opcion = Opciones.valueOf(msg.getComando());
 
                 switch (opcion) {

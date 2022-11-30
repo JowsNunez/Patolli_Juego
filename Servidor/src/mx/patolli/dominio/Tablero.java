@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class Tablero implements Serializable {
 
-    @Serial
+   
     private static final long serialVersionUID = -912157098380179388L;
     private List<Casilla> casillas;
     private String urlImagen;
