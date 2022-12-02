@@ -18,6 +18,7 @@ public class Sala implements Serializable {
 
     public Sala() {
         this.clientes = new HashSet<>();
+        turnoActual=1;
         turno = 1;
     }
 

@@ -40,7 +40,6 @@ public class ClienteHilo implements Runnable {
 
             this.cliente.setIn(in);
             this.cliente.setOut(out);
-            System.out.println("Todo bien");
             while (true) {
                 this.out.reset();
                 String str = null;
@@ -53,7 +52,6 @@ public class ClienteHilo implements Runnable {
                 }
 
                 msg = (ProtocoloMensaje) this.in.readObject();
-                System.out.println(msg);
                 Opciones opcion = Opciones.valueOf(msg.getComando());
 
                 switch (opcion) {
